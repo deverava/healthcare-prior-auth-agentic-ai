@@ -1,0 +1,36 @@
+{
+  "policy_id": "POL-ACL-2026",
+  "policy_name": "ACL Reconstruction Medical Necessity Policy",
+  "product_code": "PPO-GOLD-01",
+  "version": "2026.1",
+  "effective_date": "2026-01-01",
+  "expiration_date": "2026-12-31",
+  "procedure_code": "29888",
+  "criteria": [
+    {
+      "criterion_id": "ACL-001",
+      "description": "ACL tear must be confirmed by appropriate diagnostic imaging such as MRI.",
+      "required": true
+    },
+    {
+      "criterion_id": "ACL-002",
+      "description": "The patient must demonstrate symptomatic knee instability or functional limitation.",
+      "required": true
+    },
+    {
+      "criterion_id": "ACL-003",
+      "description": "The patient must have attempted an appropriate course of conservative treatment such as physical therapy unless clinically contraindicated.",
+      "required": true
+    },
+    {
+      "criterion_id": "ACL-004",
+      "description": "ACL reconstruction must be recommended by an orthopedic specialist.",
+      "required": true
+    }
+  ],
+  "required_documentation": [
+    "Diagnostic imaging report",
+    "Orthopedic consultation note",
+    "Conservative treatment or physical therapy documentation"
+  ]
+}
