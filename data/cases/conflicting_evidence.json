@@ -1,0 +1,59 @@
+{
+  "case_id": "PA-ACL-1003",
+  "request_date": "2026-08-31",
+  "urgency": "standard",
+
+  "member": {
+    "member_id": "MEM-10003",
+    "name": "Michael Brown",
+    "date_of_birth": "1988-02-11"
+  },
+
+  "provider": {
+    "provider_id": "PRV-20001",
+    "name": "Dr. Sarah Miller",
+    "specialty": "Orthopedic Surgery"
+  },
+
+  "insurance": {
+    "payer": "Demo Health Plan",
+    "plan_name": "Gold PPO",
+    "product_code": "PPO-GOLD-01",
+    "coverage_effective_date": "2026-01-01"
+  },
+
+  "requested_service": {
+    "procedure_name": "ACL Reconstruction Surgery",
+    "procedure_code": "29888",
+    "diagnosis": "Anterior Cruciate Ligament Tear",
+    "diagnosis_code": "S83.519A",
+    "body_site": "Left Knee"
+  },
+
+  "clinical_documents": [
+    {
+      "document_id": "DOC-MRI-003",
+      "document_type": "MRI Report",
+      "document_date": "2026-08-10",
+      "content": "MRI of the left knee demonstrates a complete anterior cruciate ligament tear."
+    },
+    {
+      "document_id": "DOC-ORTHO-003",
+      "document_type": "Orthopedic Consultation",
+      "document_date": "2026-08-15",
+      "content": "Patient reports persistent left knee instability. ACL reconstruction is recommended due to continued instability."
+    },
+    {
+      "document_id": "DOC-PT-003",
+      "document_type": "Physical Therapy Record",
+      "document_date": "2026-08-20",
+      "content": "Patient completed six weeks of physical therapy. Persistent knee instability remains."
+    },
+    {
+      "document_id": "DOC-FOLLOWUP-003",
+      "document_type": "Orthopedic Follow-up",
+      "document_date": "2026-08-25",
+      "content": "Patient currently denies knee instability and reports normal functional activity without limitation."
+    }
+  ]
+}

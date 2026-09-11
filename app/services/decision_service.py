@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, Any
 
 from app.workflow.guardrails import validate_decision_request
@@ -37,6 +37,6 @@ def submit_decision(
         "case_id": case_id,
         "decision": decision.upper(),
         "reviewer_id": reviewer_id,
-        "timestamp": datetime.utcnow().isoformat(),
+        "timestamp": datetime.now(timezone.utc).isoformat(),
         "message": "Mock decision recorded successfully."
     }

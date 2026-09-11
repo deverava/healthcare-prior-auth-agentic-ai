@@ -2,22 +2,26 @@
   "case_id": "PA-ACL-1002",
   "request_date": "2026-08-31",
   "urgency": "standard",
+
   "member": {
     "member_id": "MEM-10002",
     "name": "Emily Johnson",
     "date_of_birth": "1990-07-21"
   },
+
   "provider": {
     "provider_id": "PRV-20001",
     "name": "Dr. Sarah Miller",
     "specialty": "Orthopedic Surgery"
   },
+
   "insurance": {
     "payer": "Demo Health Plan",
     "plan_name": "Gold PPO",
     "product_code": "PPO-GOLD-01",
     "coverage_effective_date": "2026-01-01"
   },
+
   "requested_service": {
     "procedure_name": "ACL Reconstruction Surgery",
     "procedure_code": "29888",
@@ -25,6 +29,7 @@
     "diagnosis_code": "S83.519A",
     "body_site": "Right Knee"
   },
+
   "clinical_documents": [
     {
       "document_id": "DOC-MRI-002",
