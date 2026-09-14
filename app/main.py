@@ -64,10 +64,13 @@ def main():
     print("Evidence Agent")
     print("------------------------------------------")
 
-    evidence = state.get("extracted_evidence", [])
+    extracted_evidence = state.get(
+        "extracted_evidence",
+        []
+    )
 
-    if evidence:
-        for document in evidence:
+    if extracted_evidence:
+        for document in extracted_evidence:
             print(
                 f"\nDocument: "
                 f"{document.get('document_type')}"
@@ -78,10 +81,42 @@ def main():
                 f"{document.get('document_id')}"
             )
 
-            for finding in document.get("findings", []):
-                print(f"  - {finding.get('fact')}")
+            criterion_evidence = document.get(
+                "criterion_evidence",
+                []
+            )
+
+            for evidence in criterion_evidence:
+                criterion_id = evidence.get(
+                    "criterion_id"
+                )
+
+                evidence_type = evidence.get(
+                    "evidence_type"
+                )
+
+                matched_terms = evidence.get(
+                    "matched_terms",
+                    []
+                )
+
+                print(
+                    f"  - Criterion: {criterion_id}"
+                )
+
+                print(
+                    f"    Evidence Type: "
+                    f"{evidence_type}"
+                )
+
+                if matched_terms:
+                    print(
+                        "    Matched Terms: "
+                        + ", ".join(matched_terms)
+                    )
+
     else:
-        print("No evidence extracted.")
+        print("No relevant evidence extracted.")
 
     # ---------------------------------------------------------
     # 5. DISPLAY COMPLETENESS
@@ -119,7 +154,10 @@ def main():
     print("Clinical Criteria Agent")
     print("------------------------------------------")
 
-    criteria = state.get("criteria_matrix", [])
+    criteria = state.get(
+        "criteria_matrix",
+        []
+    )
 
     for result in criteria:
         print(
@@ -127,11 +165,26 @@ def main():
             f"{result.get('status')}"
         )
 
-        evidence_items = result.get("evidence", [])
+        evidence_items = result.get(
+            "evidence",
+            []
+        )
 
         for item in evidence_items:
             print(
                 f"    Evidence: "
+                f"{item.get('document_type')} "
+                f"({item.get('document_id')})"
+            )
+
+        conflicting_items = result.get(
+            "conflicting_evidence",
+            []
+        )
+
+        for item in conflicting_items:
+            print(
+                f"    Conflicting Evidence: "
                 f"{item.get('document_type')} "
                 f"({item.get('document_id')})"
             )
@@ -143,7 +196,10 @@ def main():
     print("Verifier Agent")
     print("------------------------------------------")
 
-    verification = state.get("verification", {})
+    verification = state.get(
+        "verification",
+        {}
+    )
 
     if verification:
         print(
@@ -151,7 +207,10 @@ def main():
             f"{verification.get('verification_passed')}"
         )
 
-        issues = verification.get("issues", [])
+        issues = verification.get(
+            "issues",
+            []
+        )
 
         if issues:
             print("Issues:")
@@ -169,7 +228,10 @@ def main():
     print("Coordinator Agent")
     print("------------------------------------------")
 
-    recommendation = state.get("recommendation", {})
+    recommendation = state.get(
+        "recommendation",
+        {}
+    )
 
     print(
         f"Recommendation: "
@@ -203,7 +265,10 @@ def main():
         f"{state.get('human_review_required')}"
     )
 
-    errors = state.get("errors", [])
+    errors = state.get(
+        "errors",
+        []
+    )
 
     if errors:
         print("\nWorkflow Errors:")

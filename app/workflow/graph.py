@@ -108,7 +108,10 @@ def run_workflow(case: Dict[str, Any]) -> Dict[str, Any]:
     # ---------------------------------------------------------
     state["current_stage"] = "EVIDENCE_EXTRACTION"
 
-    evidence = extract_evidence(case)
+    evidence = extract_evidence(
+    case,
+    policy,
+)
 
     state["extracted_evidence"] = evidence
 

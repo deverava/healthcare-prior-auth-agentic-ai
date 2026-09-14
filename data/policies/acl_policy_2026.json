@@ -10,27 +10,107 @@
     {
       "criterion_id": "ACL-001",
       "description": "ACL tear must be confirmed by appropriate diagnostic imaging such as MRI.",
-      "required": true
+      "required": true,
+      "evidence_rule": {
+        "positive_terms": [
+          "acl tear",
+          "anterior cruciate ligament tear"
+        ],
+        "negative_terms": [
+          "acl intact",
+          "no acl tear"
+        ],
+        "document_types": [
+          "MRI Report",
+          "Imaging Report"
+        ]
+      }
     },
     {
       "criterion_id": "ACL-002",
       "description": "The patient must demonstrate symptomatic knee instability or functional limitation.",
-      "required": true
+      "required": true,
+      "evidence_rule": {
+        "positive_terms": [
+          "knee instability",
+          "persistent instability",
+          "functional limitation"
+        ],
+        "negative_terms": [
+          "denies knee instability",
+          "denies instability",
+          "no knee instability",
+          "no instability",
+          "without limitation"
+        ],
+        "document_types": [
+          "Orthopedic Consultation",
+          "Orthopedic Follow-up",
+          "Physical Therapy Record"
+        ]
+      }
     },
     {
       "criterion_id": "ACL-003",
       "description": "The patient must have attempted an appropriate course of conservative treatment such as physical therapy unless clinically contraindicated.",
-      "required": true
+      "required": true,
+      "evidence_rule": {
+        "positive_terms": [
+          "physical therapy",
+          "conservative treatment"
+        ],
+        "negative_terms": [],
+        "document_types": [
+          "Physical Therapy Record",
+          "Orthopedic Consultation"
+        ]
+      }
     },
     {
       "criterion_id": "ACL-004",
       "description": "ACL reconstruction must be recommended by an orthopedic specialist.",
-      "required": true
+      "required": true,
+      "evidence_rule": {
+        "positive_terms": [
+          "acl reconstruction is recommended",
+          "acl reconstruction recommended"
+        ],
+        "negative_terms": [
+          "acl reconstruction not recommended"
+        ],
+        "document_types": [
+          "Orthopedic Consultation",
+          "Orthopedic Follow-up"
+        ]
+      }
     }
   ],
   "required_documentation": [
-    "Diagnostic imaging report",
-    "Orthopedic consultation note",
-    "Conservative treatment or physical therapy documentation"
+    {
+      "requirement_id": "DOC-REQ-001",
+      "name": "Diagnostic imaging report",
+      "accepted_document_types": [
+        "MRI Report",
+        "CT Report",
+        "Imaging Report"
+      ]
+    },
+    {
+      "requirement_id": "DOC-REQ-002",
+      "name": "Orthopedic consultation note",
+      "accepted_document_types": [
+        "Orthopedic Consultation",
+        "Orthopedic Follow-up"
+      ]
+    },
+    {
+      "requirement_id": "DOC-REQ-003",
+      "name": "Conservative treatment or physical therapy documentation",
+      "accepted_document_types": [
+        "Physical Therapy Record",
+        "Physical Therapy",
+        "Conservative Treatment"
+      ]
+    }
   ]
 }

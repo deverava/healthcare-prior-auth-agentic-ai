@@ -1,58 +1,117 @@
-from typing import Dict, Any, List
-
-
-DOCUMENT_TYPE_MAPPING = {
-    "diagnostic imaging report": ["mri report", "ct report", "imaging report"],
-    "orthopedic consultation note": ["orthopedic consultation"],
-    "conservative treatment or physical therapy documentation": [
-        "physical therapy record",
-        "physical therapy",
-        "conservative treatment"
-    ]
-}
+from typing import Any, Dict
 
 
 def check_completeness(
     case: Dict[str, Any],
-    policy: Dict[str, Any]
+    policy: Dict[str, Any],
 ) -> Dict[str, Any]:
     """
-    Compare required policy documentation against documents
-    available in the prior authorization case.
+    Generic policy-driven completeness check.
+
+    The agent does not contain procedure-specific or
+    disease-specific document mappings.
+
+    Required documentation and acceptable document types
+    come entirely from the selected policy.
     """
 
-    required_documents = policy.get("required_documentation", [])
-    clinical_documents = case.get("clinical_documents", [])
+    required_documentation = policy.get(
+        "required_documentation",
+        [],
+    )
 
-    available_document_types = [
-        document.get("document_type", "").lower()
-        for document in clinical_documents
-    ]
+    available_documents = case.get(
+        "clinical_documents",
+        [],
+    )
 
-    present_documents: List[str] = []
-    missing_documents: List[str] = []
+    available_document_types = {
+        document.get(
+            "document_type",
+            "",
+        ).strip().lower()
+        for document in available_documents
+    }
 
-    for required_document in required_documents:
-        required_key = required_document.lower()
+    present_documents = []
+    missing_documents = []
+    requirement_results = []
 
-        acceptable_types = DOCUMENT_TYPE_MAPPING.get(
-            required_key,
-            [required_key]
-        )
+    for requirement in required_documentation:
 
-        found = any(
-            acceptable_type in available_document_type
-            for acceptable_type in acceptable_types
-            for available_document_type in available_document_types
-        )
+        # Backward compatibility:
+        # support older policies where the requirement
+        # may still be stored as a simple string.
+        if isinstance(requirement, str):
+            requirement_name = requirement
 
-        if found:
-            present_documents.append(required_document)
+            accepted_document_types = [
+                requirement
+            ]
+
+            requirement_id = None
+
         else:
-            missing_documents.append(required_document)
+            requirement_name = requirement.get(
+                "name",
+                "",
+            )
+
+            requirement_id = requirement.get(
+                "requirement_id"
+            )
+
+            accepted_document_types = (
+                requirement.get(
+                    "accepted_document_types",
+                    [],
+                )
+            )
+
+        normalized_accepted_types = {
+            document_type.strip().lower()
+            for document_type
+            in accepted_document_types
+        }
+
+        matched_document_types = sorted(
+            available_document_types.intersection(
+                normalized_accepted_types
+            )
+        )
+
+        is_present = bool(
+            matched_document_types
+        )
+
+        requirement_result = {
+            "requirement_id": requirement_id,
+            "name": requirement_name,
+            "present": is_present,
+            "matched_document_types":
+                matched_document_types,
+        }
+
+        requirement_results.append(
+            requirement_result
+        )
+
+        if is_present:
+            present_documents.append(
+                requirement_name
+            )
+        else:
+            missing_documents.append(
+                requirement_name
+            )
 
     return {
-        "is_complete": len(missing_documents) == 0,
-        "present_documents": present_documents,
-        "missing_documents": missing_documents
+        "is_complete":
+            len(missing_documents) == 0,
+        "present_documents":
+            present_documents,
+        "missing_documents":
+            missing_documents,
+        "requirement_results":
+            requirement_results,
     }
