@@ -1,0 +1,117 @@
+{
+  "policy_id": "POL-LMRI-2026",
+  "policy_name": "Lumbar Spine MRI Medical Necessity Policy",
+  "product_code": "PPO-GOLD-01",
+  "version": "2026.1",
+  "effective_date": "2026-01-01",
+  "expiration_date": "2026-12-31",
+  "procedure_code": "72148",
+
+  "criteria": [
+    {
+      "criterion_id": "LMRI-001",
+      "description": "Persistent low back symptoms with radicular symptoms or functional limitation must be documented.",
+      "required": true,
+      "evidence_rule": {
+        "positive_terms": [
+          "persistent low back pain",
+          "radiating pain",
+          "radicular symptoms",
+          "functional limitations"
+        ],
+        "negative_terms": [
+          "symptoms resolved",
+          "no radicular symptoms"
+        ],
+        "document_types": [
+          "Orthopedic Consultation",
+          "Primary Care Note"
+        ]
+      }
+    },
+    {
+      "criterion_id": "LMRI-002",
+      "description": "An appropriate course of conservative treatment such as physical therapy must have been attempted unless clinically contraindicated.",
+      "required": true,
+      "evidence_rule": {
+        "positive_terms": [
+          "physical therapy",
+          "conservative management",
+          "conservative treatment"
+        ],
+        "negative_terms": [],
+        "document_types": [
+          "Physical Therapy Record",
+          "Orthopedic Consultation"
+        ]
+      }
+    },
+    {
+      "criterion_id": "LMRI-003",
+      "description": "Symptoms must persist despite conservative treatment.",
+      "required": true,
+      "evidence_rule": {
+        "positive_terms": [
+          "symptoms persist",
+          "symptoms continue",
+          "persist despite treatment",
+          "functional limitations persist"
+        ],
+        "negative_terms": [
+          "symptoms resolved",
+          "significant improvement"
+        ],
+        "document_types": [
+          "Physical Therapy Record",
+          "Orthopedic Consultation"
+        ]
+      }
+    },
+    {
+      "criterion_id": "LMRI-004",
+      "description": "Lumbar spine MRI must be requested by the treating provider for further diagnostic evaluation.",
+      "required": true,
+      "evidence_rule": {
+        "positive_terms": [
+          "lumbar spine mri",
+          "mri without contrast",
+          "requested for further evaluation"
+        ],
+        "negative_terms": [
+          "mri not recommended",
+          "mri not indicated"
+        ],
+        "document_types": [
+          "Imaging Order",
+          "Orthopedic Consultation"
+        ]
+      }
+    }
+  ],
+
+  "required_documentation": [
+    {
+      "requirement_id": "DOC-LMRI-001",
+      "name": "Clinical evaluation documenting current symptoms",
+      "accepted_document_types": [
+        "Orthopedic Consultation",
+        "Primary Care Note"
+      ]
+    },
+    {
+      "requirement_id": "DOC-LMRI-002",
+      "name": "Conservative treatment documentation",
+      "accepted_document_types": [
+        "Physical Therapy Record",
+        "Conservative Treatment"
+      ]
+    },
+    {
+      "requirement_id": "DOC-LMRI-003",
+      "name": "Lumbar MRI order or request",
+      "accepted_document_types": [
+        "Imaging Order"
+      ]
+    }
+  ]
+}

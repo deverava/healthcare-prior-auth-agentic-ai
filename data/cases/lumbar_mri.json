@@ -1,0 +1,53 @@
+{
+  "case_id": "PA-2026-2001",
+  "request_date": "2026-09-10",
+  "urgency": "standard",
+
+  "member": {
+    "member_id": "MEM-20001",
+    "name": "Maria Johnson",
+    "date_of_birth": "1978-11-22"
+  },
+
+  "provider": {
+    "provider_id": "PRV-30001",
+    "name": "Dr. Robert Chen",
+    "specialty": "Orthopedic Medicine"
+  },
+
+  "insurance": {
+    "payer": "Demo Health Plan",
+    "plan_name": "Gold PPO",
+    "product_code": "PPO-GOLD-01",
+    "coverage_effective_date": "2026-01-01"
+  },
+
+  "requested_service": {
+    "procedure_name": "Lumbar Spine MRI",
+    "procedure_code": "72148",
+    "diagnosis": "Low Back Pain with Lumbar Radiculopathy",
+    "diagnosis_code": "M54.16",
+    "body_site": "Lumbar Spine"
+  },
+
+  "clinical_documents": [
+    {
+      "document_id": "DOC-ORTHO-2001",
+      "document_type": "Orthopedic Consultation",
+      "document_date": "2026-09-02",
+      "content": "Patient reports persistent low back pain with radiating pain into the left leg. Symptoms continue to limit normal daily activities despite conservative management."
+    },
+    {
+      "document_id": "DOC-PT-2001",
+      "document_type": "Physical Therapy Record",
+      "document_date": "2026-09-05",
+      "content": "Patient completed six weeks of supervised physical therapy for low back pain. Symptoms and functional limitations persist despite treatment."
+    },
+    {
+      "document_id": "DOC-ORDER-2001",
+      "document_type": "Imaging Order",
+      "document_date": "2026-09-10",
+      "content": "Lumbar spine MRI without contrast requested for further evaluation of persistent lumbar radicular symptoms following conservative treatment."
+    }
+  ]
+}
